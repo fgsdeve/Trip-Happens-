@@ -1,5 +1,5 @@
 import React from 'react';
-import {BroserRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './pages/Home';
 import Itinerary from './pages/Itinerary';
 import Profile from './pages/Profile';
