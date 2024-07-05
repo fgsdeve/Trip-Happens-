@@ -7,7 +7,7 @@ import Itinerary from "./Itinerary";
 import Profile from "./Profile";
 import Login from "./Login";
 import Register from "./Register";
-
+import NearbyPlaces from "./components/NearbyPlaces ";
 const AppRoutes = () => {
     return (
         <Routes>
@@ -18,6 +18,8 @@ const AppRoutes = () => {
             <Route path="/profile" element={<Profile />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/nearby-places" component={NearbyPlaces} />
+
         </Routes>
     );
 };
