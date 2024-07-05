@@ -1,5 +1,5 @@
 import React from "react";
-
+import NearbyPlaces from "../components/NearbyPlaces ";
 const Home = () => {
   return (
     <div>
@@ -14,6 +14,7 @@ const Home = () => {
         use! To get started just create an account and start planning your dream
         trip.
       </p>
+      <NearbyPlaces />
     </div>
   );
 };
