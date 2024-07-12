@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { getItineraries } from '../../services/itineraryService';
+import { getNearbyPlaces } from '../../services/itineraryService';
 
 const ItineraryList = () => {
     const [itineraries, setItineraries] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await getItineraries();
+            const data = await getNearbyPlaces();
             setItineraries(data);
         };
 
