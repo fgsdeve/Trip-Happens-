@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { getNearbyPlaces } from '../services/travelService';
+import { getNearbyPlaces } from '../services/itineraryService';
 
 const NearbyPlaces = () => {
   const [hotelId, setHotelId] = useState('1676161');

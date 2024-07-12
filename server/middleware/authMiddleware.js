@@ -1,7 +1,9 @@
+// added const jwt to file and changed const authMiddleware to const auth (double checked our previous suggestion from chatgpt)
 const express = require('express');
 const app = express();
+const jwt = require('jsonwebtoken');
 
-const authMiddleware = (req, res, next) => {
+const auth = (req, res, next) => {
   // creating a function to get the token from the header
   const token = req.header('x-auth-token');
 
@@ -20,10 +22,12 @@ const authMiddleware = (req, res, next) => {
   }
 };
 
-app.use('/api/protected-route', authMiddleware, (req, res) => {
+app.use('/api/protected-route', auth, (req, res) => {
   res.json({ msg: 'You have access to this protected route', user: req.user });
 });
 
 app.listen(3000, () => {
   console.log('Server started on port 3000');
 });
+
+module.exports = auth; 
