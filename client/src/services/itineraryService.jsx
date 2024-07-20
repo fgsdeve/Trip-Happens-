@@ -38,6 +38,11 @@ const getItinerary = async (id) => {
   }
 };
 
+const deleteItinerary = async (id) => {
+  const response = await axios.delete(API_URL + id);
+  return response.data;
+};
+
 // Function to get nearby places for a hotel
 const getNearbyPlaces = async (hotelId, locale = 'en-gb') => {
   const options = {
@@ -62,4 +67,4 @@ const getNearbyPlaces = async (hotelId, locale = 'en-gb') => {
   }
 };
 
-export { getItineraries, createItinerary, getItinerary, getNearbyPlaces };
+export { getItineraries, createItinerary, getItinerary, getNearbyPlaces, deleteItinerary  };
