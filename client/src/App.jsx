@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter  as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Home from './pages/Home';
 import Itinerary from './pages/Itinerary';
 import Profile from './pages/Profile';
@@ -12,9 +12,9 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route exact="true" path="/" component= {Home} />
-          <Route path="/itinerary" component={Itinerary} />
-          <Route path="/profile" component={Profile} />
+          <Route exact path ="/" element= {<Home />} />
+          <Route path="/itinerary" element= {<Itinerary />} />
+          <Route path="/profile" element= {<Profile />} />
         </Routes>
         <Footer />
       </div>
