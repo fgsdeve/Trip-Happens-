@@ -12,8 +12,8 @@ const Home = () => {
         </video>
       </div>
       <div className="content">
-        <h1>Welcome to Trip Happens</h1>
-        <p>
+        <h1 className="welcome">Welcome to Trip Happens</h1>
+        <p className="intro">
           Coming up with a travel itinerary can be tedious and at times,
           stressful. We wanted to change that potentially negative planning
           experience into an easy one. All you have to do is pick what country you
@@ -23,7 +23,7 @@ const Home = () => {
           use! To get started just create an account and start planning your dream
           trip.
         </p>
-        <NearbyPlaces />
+        {/*<NearbyPlaces/>*/}
       </div>
     </div>
   );
