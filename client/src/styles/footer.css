@@ -1,0 +1,8 @@
+.footer {
+    color: white;
+    font-size: 35px;
+    font-weight: 900;
+    background-color: rgba(0, 139, 139, 0.5);
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
