@@ -12,9 +12,9 @@ const Home = () => {
         </video>
       </div>
       <div className="content">
-        <h1 className="welcome">Welcome to Trip Happens</h1>
+        {/*<h1 className="welcome">Welcome to Trip Happens</h1>*/}
         <p className="intro">
-          Coming up with a travel itinerary can be tedious and at times,
+          Welcome to Trip Happens! Coming up with a travel itinerary can be tedious and at times,
           stressful. We wanted to change that potentially negative planning
           experience into an easy one. All you have to do is pick what country you
           would like to travel to, answer a few questions, and we will do the
