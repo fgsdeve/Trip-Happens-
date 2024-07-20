@@ -1,5 +1,5 @@
 // controllers/itineraryController.js
-const Itinerary = require('../models/Itinerary');
+const Itinerary = require("../models/Itinerary");
 
 // Get all itineraries
 const getItineraries = async (req, res) => {
@@ -8,7 +8,7 @@ const getItineraries = async (req, res) => {
     res.json(itineraries);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).send("Server error");
   }
 };
 
@@ -19,7 +19,7 @@ const getItinerary = async (req, res) => {
     res.json(itinerary);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).send("Server error");
   }
 };
 
@@ -39,7 +39,7 @@ const createItinerary = async (req, res) => {
     res.json(itinerary);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).send("Server error");
   }
 };
 
@@ -51,7 +51,7 @@ const updateItinerary = async (req, res) => {
     let itinerary = await Itinerary.findById(req.params.id);
 
     if (!itinerary) {
-      return res.status(404).json({ msg: 'Itinerary not found' });
+      return res.status(404).json({ msg: "Itinerary not found" });
     }
 
     itinerary = await Itinerary.findByIdAndUpdate(
@@ -63,7 +63,7 @@ const updateItinerary = async (req, res) => {
     res.json(itinerary);
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).send("Server error");
   }
 };
 
@@ -71,10 +71,10 @@ const updateItinerary = async (req, res) => {
 const deleteItinerary = async (req, res) => {
   try {
     await Itinerary.findByIdAndRemove(req.params.id);
-    res.json({ msg: 'Itinerary removed' });
+    res.json({ msg: "Itinerary removed" });
   } catch (err) {
     console.error(err.message);
-    res.status(500).send('Server error');
+    res.status(500).send("Server error");
   }
 };
 
