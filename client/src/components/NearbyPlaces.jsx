@@ -13,7 +13,12 @@ const NearbyPlaces = () => {
 
     try {
       const data = await getNearbyPlaces(hotelId);
-      setPlaces(data);
+      // Ensure the response data matches the expected structure
+      if (data && data.surroundings) {
+        setPlaces(data.surroundings);
+      } else {
+        setError('Invalid data structure received from API');
+      }
     } catch (err) {
       setError(err.message);
     } finally {
@@ -38,7 +43,7 @@ const NearbyPlaces = () => {
       {error && <p>Error: {error}</p>}
       <ul>
         {places.map((place, index) => (
-          <li key={index}>{place.name}</li>
+          <li key={index}>{place.type_title}: {place.items.map(item => item.landmark_name).join(', ')}</li>
         ))}
       </ul>
     </div>
