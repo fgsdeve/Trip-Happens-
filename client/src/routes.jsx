@@ -13,6 +13,7 @@ const AppRoutes = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/itinerary/new" element={<ItineraryForm />} />
+      <Route path="/itinerary/edit/:id" element={<ItineraryForm />} />
       <Route path="/itinerary/:id" element={<ItineraryDetail />} />
       <Route path="/itinerary" element={<Itinerary />} />
       <Route path="/profile" element={<Profile />} />
