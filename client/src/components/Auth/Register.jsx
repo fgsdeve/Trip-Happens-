@@ -1,39 +1,49 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState, useContext } from "react";
+import { AuthContext } from "./AuthContext";
 
 const Register = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const { register } = useContext(AuthContext);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
 
-  const handleSubmit = async (e) => {
+  const { name, email, password } = formData;
+
+  const onChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const onSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const res = await axios.post('/api/users/register', { name, email, password });
-      localStorage.setItem('token', res.data.token);
-      // Handle successful registration (redirect, show success message, etc.)
-    } catch (err) {
-      console.error(err);
-      // Handle error (show error message, etc.)
-    }
+    register(name, email, password);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="text" 
-      value={name} 
-      onChange={(e) => setName(e.target.value)} 
-      placeholder="Name" required 
+    <form onSubmit={onSubmit}>
+      <input
+        type="text"
+        name="name"
+        value={name}
+        onChange={onChange}
+        placeholder="Name"
+        required
       />
-      <input type="email" 
-      value={email} 
-      onChange={(e) => setEmail(e.target.value)} 
-      placeholder="Email" required 
+      <input
+        type="email"
+        name="email"
+        value={email}
+        onChange={onChange}
+        placeholder="Email"
+        required
       />
-      <input type="password" 
-      value={password} 
-      onChange={(e) => setPassword(e.target.value)} 
-      placeholder="Password" required 
+      <input
+        type="password"
+        name="password"
+        value={password}
+        onChange={onChange}
+        placeholder="Password"
+        required
       />
       <button type="submit">Register</button>
     </form>
