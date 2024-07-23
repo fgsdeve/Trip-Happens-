@@ -1,21 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { createItinerary, getItinerary, updateItinerary } from '../../services/itineraryService';
-import { useHistory, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ItineraryForm = () => {
   const [title, setTitle] = useState('');
   const [date, setDate] = useState('');
   const [activities, setActivities] = useState(['']);
   const { id } = useParams();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (id) {
       const fetchItinerary = async () => {
-        const data = await getItinerary(id);
-        setTitle(data.title);
-        setDate(data.date);
-        setActivities(data.activities);
+        try {
+          const data = await getItinerary(id);
+          setTitle(data.title);
+          setDate(data.date);
+          setActivities(data.activities);
+        } catch (error) {
+          console.error(`Error fetching itinerary with ID ${id}:`, error);
+        }
       };
 
       fetchItinerary();
@@ -26,13 +30,16 @@ const ItineraryForm = () => {
     e.preventDefault();
     const itineraryData = { title, date, activities };
 
-    if (id) {
-      await updateItinerary(id, itineraryData);
-    } else {
-      await createItinerary(itineraryData);
+    try {
+      if (id) {
+        await updateItinerary(id, itineraryData);
+      } else {
+        await createItinerary(itineraryData);
+      }
+      navigate('/itinerary');
+    } catch (error) {
+      console.error('Error saving itinerary:', error);
     }
-
-    history.push('/itinerary');
   };
 
   const handleActivityChange = (index, value) => {

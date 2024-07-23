@@ -8,8 +8,12 @@ const ItineraryDetail = () => {
 
   useEffect(() => {
     const fetchItinerary = async () => {
-      const data = await getItinerary(id);
-      setItinerary(data);
+      try {
+        const data = await getItinerary(id);
+        setItinerary(data);
+      } catch (error) {
+        console.error(`Error fetching itinerary with ID ${id}:`, error);
+      }
     };
 
     fetchItinerary();
