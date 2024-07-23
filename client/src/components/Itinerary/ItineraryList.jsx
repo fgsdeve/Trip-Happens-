@@ -7,16 +7,24 @@ const ItineraryList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getItineraries();
-      setItineraries(data);
+      try {
+        const data = await getItineraries();
+        setItineraries(data);
+      } catch (error) {
+        console.error('Error fetching itineraries:', error);
+      }
     };
 
     fetchData();
   }, []);
 
   const handleDelete = async (id) => {
-    await deleteItinerary(id);
-    setItineraries(itineraries.filter(itinerary => itinerary._id !== id));
+    try {
+      await deleteItinerary(id);
+      setItineraries(itineraries.filter(itinerary => itinerary._id !== id));
+    } catch (error) {
+      console.error(`Error deleting itinerary with ID ${id}:`, error);
+    }
   };
 
   return (

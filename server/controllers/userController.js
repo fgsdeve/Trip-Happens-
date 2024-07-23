@@ -27,15 +27,24 @@ const registerUser = async (req, res) => {
   }
 };
 
+//login User Controll 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
+  console.log("Login request received:", { email, password });
+  
+  if (!email || !password) {
+    console.log("Validation error: Missing fields");
+    return res.status(400).json({ msg: "Please enter all fields" });
+  }
   try {
     const user = await User.findOne({ email });
     if (!user) {
+      console.log("Validation error: Invalid credentials - user not found");
       return res.status(400).json({ msg: "Invalid credentials" });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
+      console.log("Validation error: Invalid credentials - password mismatch");
       return res.status(400).json({ msg: "Invalid credentials" });
     }
     const payload = { user: { id: user.id } };
@@ -49,13 +58,9 @@ const loginUser = async (req, res) => {
       }
     );
   } catch (err) {
-    console.error(err.message);
+    console.error("Server error:", err.message);
     res.status(500).send("Server error");
   }
-};
-
-const logoutUser = (req, res) => {
-  res.json({ msg: "User logged out" });
 };
 
 module.exports = { registerUser, loginUser, logoutUser };

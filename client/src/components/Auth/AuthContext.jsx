@@ -29,21 +29,31 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
-    const res = await axios.post("/api/auth/login", { email, password });
-    localStorage.setItem("token", res.data.token);
-    setUser(res.data.user);
-    navigate("/");
+    try {
+      const res = await axios.post('/api/users/login', { email, password });
+      localStorage.setItem("token", res.data.token);
+      setUser(res.data.user);
+      navigate("/");
+    } catch (error) {
+      console.error("Error logging in:", error);
+      throw error;
+    }
   };
 
   const register = async (name, email, password) => {
-    const res = await axios.post("/api/auth/register", {
-      name,
-      email,
-      password,
-    });
-    localStorage.setItem("token", res.data.token);
-    setUser(res.data.user);
-    navigate("/");
+    try {
+      const res = await axios.post('/api/users/register', {
+        name,
+        email,
+        password,
+      });
+      localStorage.setItem("token", res.data.token);
+      setUser(res.data.user);
+      navigate("/");
+    } catch (error) {
+      console.error("Error registering user:", error);
+      throw error;
+    }
   };
 
   const logout = () => {

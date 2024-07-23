@@ -1,4 +1,3 @@
-// controllers/itineraryController.js
 const Itinerary = require("../models/Itinerary");
 
 // Get all itineraries
